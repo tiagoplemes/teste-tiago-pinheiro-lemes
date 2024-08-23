@@ -13,22 +13,24 @@ public class StatementPrinter
         var result = string.Format("Statement for {0}\n", invoice.Customer);
         CultureInfo cultureInfo = new CultureInfo("en-US");
 
-        foreach(var perf in invoice.Performances) 
+        foreach (var perf in invoice.Performances)
         {
             var play = plays[perf.PlayId];
             var lines = play.Lines;
             if (lines < 1000) lines = 1000;
             if (lines > 4000) lines = 4000;
             var thisAmount = lines * 10;
-            switch (play.Type) 
+            switch (play.Type)
             {
                 case "tragedy":
-                    if (perf.Audience > 30) {
+                    if (perf.Audience > 30)
+                    {
                         thisAmount += 1000 * (perf.Audience - 30);
                     }
                     break;
                 case "comedy":
-                    if (perf.Audience > 20) {
+                    if (perf.Audience > 20)
+                    {
                         thisAmount += 10000 + 500 * (perf.Audience - 20);
                     }
                     thisAmount += 300 * perf.Audience;
